@@ -291,6 +291,64 @@
                 left: 21px;
             }
         }
+	
+	@media (max-width: 768px) {
+    .timeline::after {
+        left: 31px;
+    }
+    
+    .month-content {
+        width: 85%;
+        margin-left: 60px !important;
+        margin-right: 0 !important;
+    }
+    
+    .connector {
+        left: 21px !important;
+        right: auto !important;
+    }
+    
+    /* Improve spacing for small screens */
+    .section-title {
+        font-size: 1.1rem;
+    }
+    
+    .checkbox-container label {
+        font-size: 0.95rem;
+    }
+    
+    /* Adjust header for smaller screens */
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    /* Make next steps stack better on mobile */
+    .next-step {
+        min-width: 100%;
+    }
+    
+    /* Ensure proper spacing in footer */
+    footer {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* Additional styles for very small screens */
+@media (max-width: 480px) {
+    .month-content {
+        width: 80%;
+        padding: 1rem;
+        margin-left: 50px !important;
+    }
+    
+    .month-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    .intro h2 {
+        font-size: 1.4rem;
+    }
+}
     </style>
 </head>
 <body>
