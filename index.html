@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Learning Roadmap</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #4f46e5;
+            --accent: #8b5cf6;
+            --background: #f8fafc;
+            --text: #0f172a;
+            --light-gray: #e2e8f0;
+            --card-bg: #ffffff;
+            --success: #10b981;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .intro {
+            text-align: center;
+            padding: 2rem 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .roadmap {
+            padding: 2rem 0;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--accent);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 5px;
+        }
+        
+        .month {
+            padding: 2rem 0;
+            position: relative;
+        }
+        
+        .month-content {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            position: relative;
+            width: 45%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .month-content.left {
+            margin-right: auto;
+            margin-left: 0;
+        }
+        
+        .month-content.right {
+            margin-left: auto;
+            margin-right: 0;
+        }
+        
+        .month-content h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+        
+        .month-content h2 span {
+            margin-right: 0.5rem;
+        }
+        
+        .section-title {
+            color: var(--secondary);
+            margin: 1rem 0 0.5rem 0;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title span {
+            margin-right: 0.5rem;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            margin: 0.75rem 0;
+            padding-left: 0;
+            position: relative;
+        }
+        
+        .checkbox-container input[type="checkbox"] {
+            margin-right: 10px;
+            margin-top: 6px;
+            flex-shrink: 0;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+        
+        .checkbox-container label {
+            cursor: pointer;
+            flex-grow: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .checkbox-container input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            color: #64748b;
+        }
+        
+        .checkbox-container .emoji {
+            margin-right: 8px;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: var(--light-gray);
+            border-radius: 5px;
+            margin: 1.5rem 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--success);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .connector {
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            top: 3rem;
+            z-index: 1;
+            box-shadow: 0 0 0 4px var(--accent);
+        }
+        
+        .left .connector {
+            right: -10%;
+        }
+        
+        .right .connector {
+            left: -10%;
+        }
+        
+        .next-steps {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .next-steps h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .next-steps-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .next-step {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            flex: 1 1 250px;
+            min-width: 250px;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .next-step input[type="checkbox"] {
+            margin-right: 10px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+        
+        .next-step label {
+            cursor: pointer;
+            flex-grow: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .next-step input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        footer {
+            background-color: var(--text);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+        
+        .reset-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: background-color 0.2s;
+        }
+        
+        .reset-button:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .month-content {
+                width: 85%;
+                margin-left: auto;
+                margin-right: 0;
+            }
+            
+            .connector {
+                left: 21px;
+            }
+            
+            .left .connector, .right .connector {
+                left: 21px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🚀 DevOps Learning Roadmap</h1>
+            <p>Master DevOps in 6 months with hands-on projects</p>
+        </div>
+    </header>
+    
+    <section class="intro container">
+        <h2>Personalized 6-Month DevOps Learning Plan</h2>
+        <p>Based on your experience, focusing on hands-on projects to build practical skills</p>
+        <p>Track your progress by checking off completed items!</p>
+        
+        <div class="progress-container">
+            <p class="progress-text">Overall Progress: <span id="progress-percentage">0%</span></p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-bar-fill"></div>
+            </div>
+            <button class="reset-button" id="reset-progress">Reset Progress</button>
+        </div>
+    </section>
+    
+    <section class="roadmap container">
+        <div class="timeline">
+            <!-- Month 1 -->
+            <div class="month">
+                <div class="month-content left">
+                    <h2><span>📌</span> Month 1: DevOps Fundamentals & Automation Basics</h2>
+                    
+                    <div class="progress-text">Month 1 Progress: <span id="month1-progress">0%</span></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="month1-progress-bar"></div>
+                    </div>
+                    
+                    <h3 class="section-title"><span>🔹</span>Topics to Learn:</h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic1-1" class="month1-checkbox">
+                        <label for="topic1-1"><span class="emoji">✅</span><strong>Linux & Shell Scripting</strong> (File permissions, processes, networking commands)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic1-2" class="month1-checkbox">
+                        <label for="topic1-2"><span class="emoji">✅</span><strong>Git & GitHub</strong> (Version control, branching strategies)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic1-3" class="month1-checkbox">
+                        <label for="topic1-3"><span class="emoji">✅</span><strong>Cloud Basics</strong> (AWS/Azure core services – EC2, S3, IAM, Networking)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic1-4" class="month1-checkbox">
+                        <label for="topic1-4"><span class="emoji">✅</span><strong>PowerShell & Python for Automation</strong></label>
+                    </div>
+                    
+                    <h3 class="section-title"><span>🛠</span>Projects to Do:</h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="project1-1" class="month1-checkbox">
+                        <label for="project1-1"><span class="emoji">🚀</span><strong>Automate Cloud Resource Creation</strong> → Use PowerShell or Python to create & manage AWS/Azure VMs.</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="project1-2" class="month1-checkbox">
+                        <label for="project1-2"><span class="emoji">🚀</span><strong>Basic Git Workflow Project</strong> → Manage an open-source repo, use branches, merge requests.</label>
+                    </div>
+                    <div class="connector"></div>
+                </div>
+            </div>
+            
+            <!-- Month 2 -->
+            <div class="month">
+                <div class="month-content right">
+                    <h2><span>📌</span> Month 2: Infrastructure as Code (IaC) – Ansible & Terraform</h2>
+                    
+                    <div class="progress-text">Month 2 Progress: <span id="month2-progress">0%</span></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="month2-progress-bar"></div>
+                    </div>
+                    
+                    <h3 class="section-title"><span>🔹</span>Topics to Learn:</h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic2-1" class="month2-checkbox">
+                        <label for="topic2-1"><span class="emoji">✅</span><strong>Ansible Basics</strong> (Playbooks, Roles, Ad-Hoc commands)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic2-2" class="month2-checkbox">
+                        <label for="topic2-2"><span class="emoji">✅</span><strong>Terraform Fundamentals</strong> (Providers, Modules, Variables, State Management)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic2-3" class="month2-checkbox">
+                        <label for="topic2-3"><span class="emoji">✅</span><strong>Cloud Automation</strong> (Provision infrastructure in AWS/Azure using Terraform)</label>
+                    </div>
+                    
+                    <h3 class="section-title"><span>🛠</span>Projects to Do:</h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="project2-1" class="month2-checkbox">
+                        <label for="project2-1"><span class="emoji">🚀</span><strong>Deploy a Web Server with Ansible</strong> → Automate Apache/Nginx setup on a Linux VM.</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="project2-2" class="month2-checkbox">
+                        <label for="project2-2"><span class="emoji">🚀</span><strong>Create a VPC in AWS/Azure with Terraform</strong> → Use Terraform to deploy a VPC, subnets, EC2, and security groups.</label>
+                    </div>
+                    <div class="connector"></div>
+                </div>
+            </div>
+            
+            <!-- Month 3 -->
+            <div class="month">
+                <div class="month-content left">
+                    <h2><span>📌</span> Month 3: CI/CD Pipelines & Docker</h2>
+                    
+                    <div class="progress-text">Month 3 Progress: <span id="month3-progress">0%</span></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="month3-progress-bar"></div>
+                    </div>
+                    
+                    <h3 class="section-title"><span>🔹</span>Topics to Learn:</h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic3-1" class="month3-checkbox">
+                        <label for="topic3-1"><span class="emoji">✅</span><strong>Jenkins/GitHub Actions</strong> (Pipeline creation, webhooks, automation)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic3-2" class="month3-checkbox">
+                        <label for="topic3-2"><span class="emoji">✅</span><strong>Docker & Containers</strong> (Dockerfiles, Images, Networking, Volumes)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic3-3" class="month3-checkbox">
+                        <label for="topic3-3"><span class="emoji">✅</span><strong>Docker Compose</strong> (Multi-container applications)</label>
+                    </div>
+                    
+                    <h3 class="section-title"><span>🛠</span>Projects to Do:</h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="project3-1" class="month3-checkbox">
+                        <label for="project3-1"><span class="emoji">🚀</span><strong>CI/CD Pipeline for a Python App</strong> → Automate build & deploy using GitHub Actions & Docker.</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="project3-2" class="month3-checkbox">
+                        <label for="project3-2"><span class="emoji">🚀</span><strong>Deploy a Multi-Tier App with Docker Compose</strong> → Run an app with frontend, backend, and database containers.</label>
+                    </div>
+                    <div class="connector"></div>
+                </div>
+            </div>
+            
+            <!-- Month 4 -->
+            <div class="month">
+                <div class="month-content right">
+                    <h2><span>📌</span> Month 4: Kubernetes & Helm</h2>
+                    
+                    <div class="progress-text">Month 4 Progress: <span id="month4-progress">0%</span></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="month4-progress-bar"></div>
+                    </div>
+                    
+                    <h3 class="section-title"><span>🔹</span>Topics to Learn:</h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic4-1" class="month4-checkbox">
+                        <label for="topic4-1"><span class="emoji">✅</span><strong>Kubernetes Basics</strong> (Pods, Deployments, Services, Namespaces)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic4-2" class="month4-checkbox">
+                        <label for="topic4-2"><span class="emoji">✅</span><strong>Helm Charts</strong> (K8s package manager for templated deployments)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic4-3" class="month4-checkbox">
+                        <label for="topic4-3"><span class="emoji">✅</span><strong>Ingress & Load Balancing</strong> (NGINX Ingress, Traefik)</label>
+                    </div>
+                    
+                    <h3 class="section-title"><span>🛠</span>Projects to Do:</h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="project4-1" class="month4-checkbox">
+                        <label for="project4-1"><span class="emoji">🚀</span><strong>Deploy an App on Kubernetes (Minikube/Cloud)</strong> → Run a simple Node.js/Python app in K8s.</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="project4-2" class="month4-checkbox">
+                        <label for="project4-2"><span class="emoji">🚀</span><strong>Use Helm Charts for Deployment</strong> → Package and deploy an app using Helm.</label>
+                    </div>
+                    <div class="connector"></div>
+                </div>
+            </div>
+            
+            <!-- Month 5 -->
+            <div class="month">
+                <div class="month-content left">
+                    <h2><span>📌</span> Month 5: Monitoring & Logging</h2>
+                    
+                    <div class="progress-text">Month 5 Progress: <span id="month5-progress">0%</span></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="month5-progress-bar"></div>
+                    </div>
+                    
+                    <h3 class="section-title"><span>🔹</span>Topics to Learn:</h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic5-1" class="month5-checkbox">
+                        <label for="topic5-1"><span class="emoji">✅</span><strong>Prometheus & Grafana</strong> (Metrics, Dashboards, Alerts)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic5-2" class="month5-checkbox">
+                        <label for="topic5-2"><span class="emoji">✅</span><strong>ELK Stack (Elasticsearch, Logstash, Kibana)</strong> (Centralized Logging)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic5-3" class="month5-checkbox">
+                        <label for="topic5-3"><span class="emoji">✅</span><strong>Cloud Monitoring</strong> (AWS CloudWatch, Azure Monitor)</label>
+                    </div>
+                    
+                    <h3 class="section-title"><span>🛠</span>Projects to Do:</h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="project5-1" class="month5-checkbox">
+                        <label for="project5-1"><span class="emoji">🚀</span><strong>Monitor a Kubernetes Cluster with Prometheus & Grafana</strong></label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="project5-2" class="month5-checkbox">
+                        <label for="project5-2"><span class="emoji">🚀</span><strong>Set Up a Logging System with ELK</strong></label>
+                    </div>
+                    <div class="connector"></div>
+                </div>
+            </div>
+            
+            <!-- Month 6 -->
+            <div class="month">
+                <div class="month-content right">
+                    <h2><span>📌</span> Month 6: DevSecOps & Advanced DevOps</h2>
+                    
+                    <div class="progress-text">Month 6 Progress: <span id="month6-progress">0%</span></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="month6-progress-bar"></div>
+                    </div>
+                    
+                    <h3 class="section-title"><span>🔹</span>Topics to Learn:</h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic6-1" class="month6-checkbox">
+                        <label for="topic6-1"><span class="emoji">✅</span><strong>Security & Compliance in DevOps</strong> (IAM, Vault, Container Security)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic6-2" class="month6-checkbox">
+                        <label for="topic6-2"><span class="emoji">✅</span><strong>Chaos Engineering & SRE Basics</strong> (Resilience testing)</label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="topic6-3" class="month6-checkbox">
+                        <label for="topic6-3"><span class="emoji">✅</span><strong>Platform Engineering</strong> (Self-service infrastructure, Backstage.io)</label>
+                    </div>
+                    
+                    <h3 class="section-title"><span>🛠</span>Projects to Do:</h3>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="project6-1" class="month6-checkbox">
+                        <label for="project6-1"><span class="emoji">🚀</span><strong>Secure Your CI/CD Pipeline (Secrets Management & IAM)</strong></label>
+                    </div>
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="project6-2" class="month6-checkbox">
+                        <label for="project6-2"><span class="emoji">🚀</span><strong>Create a Self-Healing Infrastructure (Auto-scaling, Failover Handling)</strong></label>
+                    </div>
+                    <div class="connector"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="next-steps">
+        <div class="container">
+            <h2>🔥 Next Steps After 6 Months:</h2>
+            <div class="next-steps-content">
+                <div class="next-step">
+                    <input type="checkbox" id="next-step1" class="next-step-checkbox">
+                    <label for="next-step1">Apply for <strong>DevOps Engineer or SRE roles</strong></label>
+                </div>
+                <div class="next-step">
+                    <input type="checkbox" id="next-step2" class="next-step-checkbox">
+                    <label for="next-step2">Contribute to <strong>open-source projects</strong> (Ansible roles, Terraform modules)</label>
+                </div>
+                <div class="next-step">
+                    <input type="checkbox" id="next-step3" class="next-step-checkbox">
+                    <label for="next-step3">Get certified in <strong>AWS/Azure DevOps</strong> or <strong>CKA (Kubernetes)</strong></label>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>Start your DevOps journey today!</p>
+        </div>
+    </footer>
+
+    <script>
+        // Save/load progress from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved progress
+            loadProgress();
+            
+            // Add event listeners to all checkboxes
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    // Update progress bars
+                    updateProgress();
+                    
+                    // Save to localStorage
+                    saveProgress();
+                });
+            });
+            
+            // Reset button
+            document.getElementById('reset-progress').addEventListener('click', function() {
+                if (confirm('Are you sure you want to reset all progress?')) {
+                    resetProgress();
+                }
+            });
+            
+            // Initial progress calculation
+            updateProgress();
+        });
+
+	// Add this function to your existing JavaScript code
+function updateCircleColors() {
+    // Loop through each month
+    for (let i = 1; i <= 6; i++) {
+        const monthCheckboxes = document.querySelectorAll(`.month${i}-checkbox`);
+        const checkedCount = Array.from(monthCheckboxes).filter(cb => cb.checked).length;
+        const totalCount = monthCheckboxes.length;
+        
+        // Get the connector for this month
+        const connector = document.querySelector(`.month:nth-child(${i}) .connector`);
+        
+        // Check if all checkboxes for this month are checked
+        if (checkedCount === totalCount && totalCount > 0) {
+            // Change the connector to green when complete
+            connector.style.backgroundColor = 'var(--success)';
+            connector.style.boxShadow = '0 0 0 4px #10b98160'; // Semi-transparent green shadow
+        } else {
+            // Reset to default blue
+            connector.style.backgroundColor = 'var(--primary)';
+            connector.style.boxShadow = '0 0 0 4px var(--accent)';
+        }
+    }
+}
+        
+        function updateProgress() {
+    // Calculate progress for each month
+    for (let i = 1; i <= 6; i++) {
+        const monthCheckboxes = document.querySelectorAll(`.month${i}-checkbox`);
+        const checkedCount = Array.from(monthCheckboxes).filter(cb => cb.checked).length;
+        const totalCount = monthCheckboxes.length;
+        const progressPercentage = totalCount > 0 ? Math.round((checkedCount / totalCount) * 100) : 0;
+        
+        // Update month progress
+        document.getElementById(`month${i}-progress`).textContent = `${progressPercentage}%`;
+        document.getElementById(`month${i}-progress-bar`).style.width = `${progressPercentage}%`;
+    }
+    
+    // Calculate overall progress
+    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
+    const totalChecked = Array.from(allCheckboxes).filter(cb => cb.checked).length;
+    const totalCheckboxes = allCheckboxes.length;
+    const overallProgress = totalCheckboxes > 0 ? Math.round((totalChecked / totalCheckboxes) * 100) : 0;
+    
+    // Update overall progress
+    document.getElementById('progress-percentage').textContent = `${overallProgress}%`;
+    document.getElementById('progress-bar-fill').style.width = `${overallProgress}%`;
+    
+    // Update circle colors
+    updateCircleColors();
+}
+        
+        function saveProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const progressData = {};
+            
+            checkboxes.forEach(checkbox => {
+                progressData[checkbox.id] = checkbox.checked;
+            });
+            
+            localStorage.setItem('devopsRoadmapProgress', JSON.stringify(progressData));
+        }
+        
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('devopsRoadmapProgress');
+            
+            if (savedProgress) {
+                const progressData = JSON.parse(savedProgress);
+                
+                // Apply saved state to checkboxes
+                Object.keys(progressData).forEach(id => {
+                    const checkbox = document.getElementById(id);
+                    if (checkbox) {
+                        checkbox.checked = progressData[id];
+                    }
+                });
+		// Update progress displays and circle colors
+        	updateProgress();
+            }
+        }
+        
+        function resetProgress() {
+            // Uncheck all checkboxes
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            
+            // Update progress displays
+            updateProgress();
+            
+            // Clear localStorage
+            localStorage.removeItem('devopsRoadmapProgress');
+        }
+    </script>
+</body>
+</html>
